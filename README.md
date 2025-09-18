@@ -212,5 +212,3 @@ export default function SendSMS() {
 ## 📄 License
 
 MIT License. See [LICENSE](LICENSE) for details.
-
-```
