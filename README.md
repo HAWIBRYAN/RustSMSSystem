@@ -27,17 +27,14 @@ Make sure you have installed:
 1. **Clone the repository**
    git clone git@github.com:HAWIBRYAN/RustSMSSystem.git
    cd RustSMSSystem
-   ```
 
 2. **Install frontend dependencies**
    cd frontend
    npm install
-   ```
 
 3. **Set up backend**
    cd ../backend
    cargo build
-   ```
 
 4. **Environment variables**
    Create a `.env` file inside `backend/` with your Taifa Mobile API credentials:
@@ -45,7 +42,6 @@ Make sure you have installed:
    TAIFA_API_KEY=your_api_key_here
    TAIFA_API_SECRET=your_api_secret_here
    TAIFA_BASE_URL=https://api.taifamobile.com
-   ```
 
 ---
 
