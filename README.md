@@ -242,8 +242,3 @@ export default function SendSMS() {
 5. Open a Pull Request
 
 ---
-
-## 📄 License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
