@@ -1,3 +1,8 @@
+Perfect 👍 — here’s a **ready-to-copy README.md** including example backend + frontend code snippets so anyone cloning your repo can test immediately.
+
+---
+
+````markdown
 # 📱 Rust SMS System
 
 A simple SMS management system built with **Rust (Axum)** for the backend and **React (Vite + TypeScript)** for the frontend.  
@@ -25,23 +30,33 @@ Make sure you have installed:
 ## 🔧 Installation
 
 1. **Clone the repository**
+   ```bash
    git clone git@github.com:HAWIBRYAN/RustSMSSystem.git
    cd RustSMSSystem
+````
 
 2. **Install frontend dependencies**
+
+   ```bash
    cd frontend
    npm install
+   ```
 
 3. **Set up backend**
+
+   ```bash
    cd ../backend
    cargo build
+   ```
 
 4. **Environment variables**
    Create a `.env` file inside `backend/` with your Taifa Mobile API credentials:
 
+   ```env
    TAIFA_API_KEY=your_api_key_here
    TAIFA_API_SECRET=your_api_secret_here
    TAIFA_BASE_URL=https://api.taifamobile.com
+   ```
 
 ---
 
@@ -51,23 +66,33 @@ Make sure you have installed:
 
 Start both frontend and backend together:
 
-
+```bash
 npm run dev
+```
 
 * Backend runs on: `http://127.0.0.1:3000`
 * Frontend runs on: `http://127.0.0.1:5173`
 
 ### Build for production
 
+```bash
 npm run build
+```
 
 ### Run backend only
+
+```bash
 cd backend
 cargo run
+```
 
 ### Run frontend only
+
+```bash
 cd frontend
 npm run dev
+```
+
 ---
 
 ## 📡 API Endpoints
@@ -77,17 +102,21 @@ npm run dev
 Send an SMS via Taifa Mobile API.
 **Request body:**
 
+```json
 {
   "to": "+2547XXXXXXX",
   "message": "Hello from Rust SMS System!"
 }
+```
 
 **Response:**
 
+```json
 {
   "status": "success",
   "message_id": "abc123"
 }
+```
 
 ---
 
@@ -95,6 +124,7 @@ Send an SMS via Taifa Mobile API.
 
 ### Backend (Rust - `handlers.rs`)
 
+```rust
 use axum::{Json, http::StatusCode};
 use serde::{Deserialize, Serialize};
 use reqwest::Client;
@@ -116,6 +146,7 @@ pub async fn send_sms(Json(payload): Json<SmsRequest>) -> Result<Json<SmsRespons
     let api_key = env::var("TAIFA_API_KEY").unwrap();
     let api_secret = env::var("TAIFA_API_SECRET").unwrap();
     let base_url = env::var("TAIFA_BASE_URL").unwrap();
+
     let client = Client::new();
     let res = client
         .post(format!("{}/sms/send", base_url))
@@ -124,16 +155,19 @@ pub async fn send_sms(Json(payload): Json<SmsRequest>) -> Result<Json<SmsRespons
         .send()
         .await
         .map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;
+
     let status = if res.status().is_success() { "success" } else { "failed" };
+
     Ok(Json(SmsResponse {
         status: status.to_string(),
         message_id: Some("mock123".to_string()), // replace with actual response parsing
     }))
 }
-
+```
 
 ### Frontend (React - `SendSMS.tsx`)
 
+```tsx
 import React, { useState } from "react";
 
 export default function SendSMS() {
@@ -143,11 +177,13 @@ export default function SendSMS() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const res = await fetch("http://127.0.0.1:3000/send-sms", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ to, message }),
     });
+
     const data = await res.json();
     setResponse(JSON.stringify(data, null, 2));
   };
@@ -179,7 +215,7 @@ export default function SendSMS() {
     </div>
   );
 }
-
+```
 
 ---
 
@@ -212,3 +248,4 @@ export default function SendSMS() {
 ## 📄 License
 
 MIT License. See [LICENSE](LICENSE) for details.
+
