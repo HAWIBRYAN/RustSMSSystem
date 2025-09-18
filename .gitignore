@@ -1,0 +1,11 @@
+# Rust
+/target
+
+# Env
+.env
+
+# Node / Vite
+node_modules
+dist
+.sms-frontend/node_modules
+.sms-frontend/dist
