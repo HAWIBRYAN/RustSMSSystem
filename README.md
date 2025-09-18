@@ -1,8 +1,6 @@
 
 
 ---
-
-````markdown
 # 📱 Rust SMS System
 
 A simple SMS management system built with **Rust (Axum)** for the backend and **React (Vite + TypeScript)** for the frontend.  
@@ -33,7 +31,7 @@ Make sure you have installed:
    ```bash
    git clone git@github.com:HAWIBRYAN/RustSMSSystem.git
    cd RustSMSSystem
-````
+
 
 2. **Install frontend dependencies**
 
